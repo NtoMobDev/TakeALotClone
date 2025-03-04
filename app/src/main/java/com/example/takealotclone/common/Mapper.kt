@@ -1,4 +1,4 @@
-package com.example.takealotclone
+package com.example.takealotclone.common
 
 import com.example.takealotclone.data.dto.ProductsDto
 import com.example.takealotclone.domain.model.Product
