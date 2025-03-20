@@ -73,22 +73,27 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
 
-
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-    implementation(libs.okhttps)
+    //implementation(libs.okhttps)
 
     //Hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.core.v160)
-    
+    implementation(libs.androidx.core.splashscreen)
+
 
 }
 
 kapt{
     correctErrorTypes = true
+}
+configurations.all {
+    resolutionStrategy {
+        force ("androidx.core:core:1.13.1")
+    }
 }
