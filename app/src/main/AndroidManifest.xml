@@ -17,7 +17,7 @@
             android:name="com.example.bestBuy.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TakeALotClone">
+            android:theme="@style/Theme.SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
