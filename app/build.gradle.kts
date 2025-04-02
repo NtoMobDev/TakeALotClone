@@ -87,8 +87,10 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    //ksp(libs.dagger.compiler)
+    // Coil for image loading
+    implementation("io.coil-kt:coil-compose:2.2.2")
 
     //Coroutines
     implementation(libs.kotlinx.coroutines.core.v160)

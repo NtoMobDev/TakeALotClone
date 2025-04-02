@@ -1,6 +1,6 @@
-package com.example.bestBuy.domain.model
+package com.example.bestBuy.data.dto
 
-data class Product(
+data class ProductDto(
     val brand: String,
     val category: String,
     val color: String?,

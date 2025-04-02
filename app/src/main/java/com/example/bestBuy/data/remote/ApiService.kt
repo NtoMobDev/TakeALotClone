@@ -1,15 +1,15 @@
 package com.example.bestBuy.data.remote
 
 import com.example.bestBuy.data.dto.CategoryDto
-import com.example.bestBuy.data.dto.ProductsDto
+import com.example.bestBuy.data.dto.ResponseDto
 import retrofit2.http.GET
 
 interface ApiService {
     @GET("products")
-    suspend fun getAllProducts(): List<ProductsDto>
+    suspend fun getAllProducts(): ResponseDto
 
-    @GET("categories")
-    suspend fun getAllCategories():List<CategoryDto>
+    @GET("products/category")
+    suspend fun getAllCategories():CategoryDto
 
 
 }

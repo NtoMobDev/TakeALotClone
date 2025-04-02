@@ -9,11 +9,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.bestBuy.presentation.screens.HomeScreen
+import com.example.bestBuy.presentation.viewmodel.ProductsViewModel
 import com.example.bestBuy.ui.theme.TakeALotCloneTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,10 +28,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             TakeALotCloneTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
+                    HomeScreen(modifier = Modifier.padding(innerPadding))
+                    /*Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
-                    )
+                    )*/
+
                 }
             }
         }
@@ -33,11 +41,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String, modifier: Modifier = Modifier,productsViewModel:ProductsViewModel = hiltViewModel()) {
+
+
     Text(
         text = "Hello $name!",
         modifier = modifier
     )
+
 }
 
 @Preview(showBackground = true)

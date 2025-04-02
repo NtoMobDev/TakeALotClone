@@ -1,7 +1,6 @@
 package com.example.bestBuy.domain.usecases
 
 import com.example.bestBuy.common.Resource
-import com.example.bestBuy.domain.model.Category
 import com.example.bestBuy.domain.model.Product
 import com.example.bestBuy.domain.repository.ProductsRepository
 import kotlinx.coroutines.Dispatchers
@@ -30,16 +29,16 @@ class GetAllProductsUseCase @Inject constructor(private val productsRepo: Produc
 }
 
 class GetCategoriesUseCase @Inject constructor(private val productsRepo: ProductsRepository){
-    operator  fun invoke(): Flow<Resource<List<Category>>> = flow{
-        emit(Resource.Loading<List<Category>>())
+    operator  fun invoke(): Flow<Resource<List<String>>> = flow{
+        emit(Resource.Loading<List<String>>())
         try {
-            emit(Resource.Success<List<Category>>(data = productsRepo.getAllCategories()))
+            emit(Resource.Success<List<String>>(data = productsRepo.getAllCategories()))
         }catch (e : HttpException){
-            emit(Resource.Error<List<Category>>(message = e.localizedMessage ?: "An unexpected error occurred"))}
+            emit(Resource.Error<List<String>>(message = e.localizedMessage ?: "An unexpected error occurred"))}
         catch (e : IOException){
-            emit(Resource.Error<List<Category>>(message = "Couldn't reach server"))}
+            emit(Resource.Error<List<String>>(message = "Couldn't reach server"))}
         catch (e : Exception){
-            emit(Resource.Error<List<Category>>(message = e.message.toString()))
+            emit(Resource.Error<List<String>>(message = e.message.toString()))
         }
     }.flowOn(Dispatchers.IO) //// Ensure the network request runs on IO dispatcher
 

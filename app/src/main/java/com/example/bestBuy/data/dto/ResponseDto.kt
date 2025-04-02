@@ -1,7 +1,7 @@
 package com.example.bestBuy.data.dto
 
-data class CategoryDto(
-    val categories: List<String>,
+data class ResponseDto(
     val message: String,
+    val products: List<ProductDto>,
     val status: String
 )

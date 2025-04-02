@@ -1,28 +1,43 @@
 package com.example.bestBuy.common
 
 import com.example.bestBuy.data.dto.CategoryDto
-import com.example.bestBuy.data.dto.ProductsDto
+import com.example.bestBuy.data.dto.ProductDto
+import com.example.bestBuy.data.dto.ResponseDto
 import com.example.bestBuy.domain.model.Category
 import com.example.bestBuy.domain.model.Product
+import com.example.bestBuy.domain.model.Response
 
-fun ProductsDto.toProductDomainModel() : Product {
-    return Product(category = this.category,
+fun ResponseDto.toResponseDomainModel() : Response {
+        return Response(
+            message = this.message,
+            products = this.products.map { it.toProductDomainModel() },  // Mapping ProductDto list to Product list
+            status = this.status
+        )
+
+}
+
+fun ProductDto.toProductDomainModel(): Product {
+    return Product(brand = this.brand,
+    category = this.category,
+    color = this.color,
     description = this.description,
+    discount = this.discount,
     id = this.id,
-    images = this.images,
+    image = this.image,
+    model = this.model,
+    onSale = this.onSale,
+    popular = this.popular,
     price = this.price,
-    title = this.title)
+    title = this.title
+    )
 }
 
 fun CategoryDto.toCategoryDomainModel() : Category {
     return Category(
-    id = this.id,
-    image = this.image,
-    name = this.name
-
-    )
+        categories = this.categories,
+        message = this.message,
+        status = this.status)
 }
-
 
 
 /*fun List<ProductsDto>.toDomain(): List<Product> = map {
