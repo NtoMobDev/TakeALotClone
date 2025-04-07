@@ -28,6 +28,24 @@ class GetAllProductsUseCase @Inject constructor(private val productsRepo: Produc
 
 }
 
+
+class GetHomePageProductsUseCase @Inject constructor (private val productsRepo: ProductsRepository){
+    operator fun invoke(limit:Int):Flow<Resource<List<Product>>> = flow{
+        emit(Resource.Loading<List<Product>>())
+        try {
+            emit(Resource.Success<List<Product>>(data = productsRepo.getHomePageProductList(limit)))
+        }catch (e : HttpException){
+            emit(Resource.Error<List<Product>>(message = e.localizedMessage ?: "An unexpected error occurred"))}
+        catch (e : IOException){
+            emit(Resource.Error<List<Product>>(message = "Couldn't reach server"))}
+        catch (e : Exception){
+            emit(Resource.Error<List<Product>>(message = e.message.toString()))
+        }
+    }.flowOn(Dispatchers.IO) //// Ensure the network request runs on IO dispatcher
+
+
+}
+
 class GetCategoriesUseCase @Inject constructor(private val productsRepo: ProductsRepository){
     operator  fun invoke(): Flow<Resource<List<String>>> = flow{
         emit(Resource.Loading<List<String>>())

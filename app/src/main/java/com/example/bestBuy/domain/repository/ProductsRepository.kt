@@ -9,5 +9,7 @@ interface ProductsRepository {
 
     suspend fun getAllCategories(): List<String>
 
+    suspend fun getHomePageProductList(limit:Int) : List<Product>
+
 
 }

@@ -29,10 +29,7 @@ class MainActivity : ComponentActivity() {
             TakeALotCloneTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     HomeScreen(modifier = Modifier.padding(innerPadding))
-                    /*Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )*/
+
 
                 }
             }
@@ -40,21 +37,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier,productsViewModel:ProductsViewModel = hiltViewModel()) {
-
-
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TakeALotCloneTheme {
-        Greeting("Android")
-    }
-}

@@ -89,6 +89,8 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
+
+
     // Coil for image loading
     implementation("io.coil-kt:coil-compose:2.2.2")
 
