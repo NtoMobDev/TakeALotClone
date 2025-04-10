@@ -4,6 +4,7 @@ package com.example.bestBuy.presentation.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 
 
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,6 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.bestBuy.domain.model.Product
 import com.example.bestBuy.presentation.state.ProductsUiState
@@ -42,7 +44,7 @@ import com.example.bestBuy.ui.theme.Grey40
 import com.example.bestBuy.ui.theme.Pink80
 
 @Composable
-fun HomeScreen (modifier: Modifier,productsViewModel:ProductsViewModel = hiltViewModel()){
+fun HomeScreen (navController: NavController,productsViewModel:ProductsViewModel = hiltViewModel()){
     val uiProductsState by productsViewModel.uiProductsState.collectAsStateWithLifecycle()
         when {
             uiProductsState.isLoading -> { LoadingScreen() }
@@ -72,9 +74,12 @@ fun ProductCard(product:Product){
     Card(modifier = Modifier.height(200.dp),
         shape = RoundedCornerShape(5.dp), colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(1.dp, Grey40)) {
-        AsyncImage(model = product.image, contentDescription = product.title,
-            contentScale = ContentScale.Crop, modifier = Modifier.size(100.dp))
-        Text(text = product.title, maxLines = 1, overflow = TextOverflow.Clip)
+        Column(modifier = Modifier.fillMaxSize()) {
+            AsyncImage(model = product.image, contentDescription = product.title,
+                contentScale = ContentScale.Crop, modifier = Modifier.size(100.dp))
+            Text(text = product.title, maxLines = 1, overflow = TextOverflow.Clip)
+        }
+
 
     }
 

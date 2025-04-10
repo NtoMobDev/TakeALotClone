@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.bestBuy.presentation.navigation.AppNavHost
+import com.example.bestBuy.presentation.navigation.BottomNav
 import com.example.bestBuy.presentation.screens.HomeScreen
 import com.example.bestBuy.presentation.viewmodel.ProductsViewModel
 import com.example.bestBuy.ui.theme.TakeALotCloneTheme
@@ -27,11 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TakeALotCloneTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(modifier = Modifier.padding(innerPadding))
-
-
-                }
+                AppNavHost()
             }
         }
     }
