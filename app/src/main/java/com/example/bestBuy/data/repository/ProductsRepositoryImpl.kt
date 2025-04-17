@@ -22,4 +22,8 @@ class ProductsRepositoryImpl @Inject constructor(private val productsApi:ApiServ
 
     }
 
+    override suspend fun getSingleProduct(id: Int): Product {
+        return productsApi.getSingleProduct(id).product.toProductDomainModel()
+    }
+
 }

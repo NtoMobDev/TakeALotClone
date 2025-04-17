@@ -11,5 +11,7 @@ interface ProductsRepository {
 
     suspend fun getHomePageProductList(limit:Int) : List<Product>
 
+    suspend fun getSingleProduct(id:Int):Product
+
 
 }

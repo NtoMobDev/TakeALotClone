@@ -20,7 +20,7 @@ class GetAllProductsUseCase @Inject constructor(private val productsRepo: Produc
         }catch (e : HttpException){
             emit(Resource.Error<List<Product>>(message = e.localizedMessage ?: "An unexpected error occurred"))}
         catch (e : IOException){
-            emit(Resource.Error<List<Product>>(message = "Couldn't reach server"))}
+            emit(Resource.Error<List<Product>>(message ="Couldn't reach server"))}
         catch (e : Exception){
             emit(Resource.Error<List<Product>>(message = e.message.toString()))
         }
@@ -37,7 +37,7 @@ class GetHomePageProductsUseCase @Inject constructor (private val productsRepo: 
         }catch (e : HttpException){
             emit(Resource.Error<List<Product>>(message = e.localizedMessage ?: "An unexpected error occurred"))}
         catch (e : IOException){
-            emit(Resource.Error<List<Product>>(message = "Couldn't reach server"))}
+            emit(Resource.Error<List<Product>>(message = e.message.toString()))}
         catch (e : Exception){
             emit(Resource.Error<List<Product>>(message = e.message.toString()))
         }
@@ -61,6 +61,16 @@ class GetCategoriesUseCase @Inject constructor(private val productsRepo: Product
     }.flowOn(Dispatchers.IO) //// Ensure the network request runs on IO dispatcher
 
 
+}
+
+class GetSingleProductUseCase @Inject constructor(private val productsRepo: ProductsRepository){
+     suspend operator  fun invoke(id:Int):Resource<Product>{
+        return try {
+            Resource.Success(data = productsRepo.getSingleProduct(id))
+        } catch (e : Exception){
+            Resource.Error(message = e.message.toString())
+        }
+    }
 }
 
 

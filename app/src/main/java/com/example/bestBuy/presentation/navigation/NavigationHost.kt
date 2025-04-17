@@ -4,11 +4,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.bestBuy.presentation.screens.HomeScreen
+import com.example.bestBuy.presentation.screens.ProductDetailScreen
 
 @Composable
 fun AppNavHost(navController:NavHostController = rememberNavController()){
@@ -24,6 +28,12 @@ Scaffold(
         composable(Screen.Cart.route){}
         composable(Screen.Profile.route){}
         composable(Screen.Search.route){}
+        composable(
+            route = Screen.ProductDetails.route,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) {
+            ProductDetailScreen()
+        }
 
     }
 

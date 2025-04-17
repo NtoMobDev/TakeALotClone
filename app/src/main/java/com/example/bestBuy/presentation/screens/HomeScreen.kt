@@ -2,6 +2,7 @@ package com.example.bestBuy.presentation.screens
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +10,9 @@ import androidx.compose.foundation.layout.Column
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 
@@ -31,13 +34,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.bestBuy.domain.model.Product
+import com.example.bestBuy.presentation.navigation.Screen
 import com.example.bestBuy.presentation.state.ProductsUiState
 import com.example.bestBuy.presentation.viewmodel.ProductsViewModel
 import com.example.bestBuy.ui.theme.Grey40
@@ -50,33 +57,38 @@ fun HomeScreen (navController: NavController,productsViewModel:ProductsViewModel
             uiProductsState.isLoading -> { LoadingScreen() }
             uiProductsState.error != null -> { ErrorScreen(message = uiProductsState.error ?: "Unknown error") }
             uiProductsState.products.isNotEmpty() -> {
-                ProductList(products = uiProductsState.products)
+                ProductList(products = uiProductsState.products,navController)
             }
-            else -> { Text("No products available") }
+            //else -> { Text("No products available") }
         }
 }
 
 @Composable
-fun ProductList(products: List<Product>) {
+fun ProductList(products: List<Product>,navController: NavController) {
   LazyVerticalGrid(columns = GridCells.Fixed(2),
-      verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp),
+      verticalArrangement = Arrangement.spacedBy(4.dp),
+      horizontalArrangement = Arrangement.spacedBy(4.dp),
       modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(4.dp)
   )  {
       items(products){ product ->
-          ProductCard(product)
+          ProductCard(product){navController.navigate(Screen.ProductDetails.createRoute(product.id))}
 
       }
   }
 }
 
 @Composable
-fun ProductCard(product:Product){
-    Card(modifier = Modifier.height(200.dp),
-        shape = RoundedCornerShape(5.dp), colors = CardDefaults.cardColors(containerColor = Color.White),
+fun ProductCard(product:Product,onClick :() -> Unit){
+
+    Card(modifier = Modifier.height(300.dp).clickable { onClick() },
+        shape = RoundedCornerShape(5.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(1.dp, Grey40)) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            AsyncImage(model = product.image, contentDescription = product.title,
-                contentScale = ContentScale.Crop, modifier = Modifier.size(100.dp))
+        Column(modifier = Modifier.fillMaxSize().padding(8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            AsyncImage(model = product.image
+                , contentDescription = product.title,
+                contentScale = ContentScale.Fit, modifier = Modifier.fillMaxWidth().height(160.dp))
+
             Text(text = product.title, maxLines = 1, overflow = TextOverflow.Clip)
         }
 
