@@ -7,9 +7,15 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bestBuy.common.Resource
+import com.example.bestBuy.domain.model.Product
 import com.example.bestBuy.domain.usecases.GetSingleProductUseCase
+import com.example.bestBuy.presentation.state.ProductsUiState
 import com.example.bestBuy.presentation.state.SingleProductUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,32 +23,25 @@ import javax.inject.Inject
 class SingleProductViewModel @Inject constructor(private  val getSingleProductUseCase: GetSingleProductUseCase,
                                                  savedStateHandle: SavedStateHandle): ViewModel() {
 
-    private var _uiProductState by mutableStateOf(SingleProductUiState())
-    var uiProductUiState = _uiProductState
+    private val productId: Int = checkNotNull(savedStateHandle["itemId"])
+
+    private val _uiProductState = MutableStateFlow<SingleProductUiState>(SingleProductUiState())
+    val productState: StateFlow<SingleProductUiState> = _uiProductState
 
     init {
-        val productId = savedStateHandle.get<Int>("id")
-        if (productId != null) {
-            fetchProduct(productId)
-        } else {
-            _uiProductState = _uiProductState.copy(error = "Missing or Invalid product ID")
-        }
-    }
-
-    private fun fetchProduct(id: Int) {
-        viewModelScope.launch {
-            _uiProductState = _uiProductState.copy(isLoading = true)
-
-            when (val result = getSingleProductUseCase(id)) {
-                is Resource.Success -> {
-                    _uiProductState = _uiProductState.copy(product = result.data, isLoading = false)
+        getSingleProductUseCase(productId).onEach{result->
+            when(result){
+                is Resource.Loading->{
+                    //Emit new values reactively – When you update .value, it notifies all collectors.
+                    _uiProductState.value = SingleProductUiState(isLoading = true)
                 }
-                is Resource.Error -> {
-                    _uiProductState = _uiProductState.copy(error = result.message, isLoading = false)
+                is Resource.Success->{
+                    _uiProductState.value = SingleProductUiState(product = result.data, isLoading = false)
                 }
-                else -> {}
+                is Resource.Error->{
+                    _uiProductState.value = SingleProductUiState(error = result.message.toString(), isLoading = false)
+                }
             }
-        }
-
+        }.launchIn(viewModelScope)
     }
 }

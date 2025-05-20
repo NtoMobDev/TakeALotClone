@@ -64,13 +64,14 @@ class GetCategoriesUseCase @Inject constructor(private val productsRepo: Product
 }
 
 class GetSingleProductUseCase @Inject constructor(private val productsRepo: ProductsRepository){
-     suspend operator  fun invoke(id:Int):Resource<Product>{
-        return try {
-            Resource.Success(data = productsRepo.getSingleProduct(id))
+     operator  fun invoke(id:Int):Flow<Resource<Product>> = flow{
+         emit(Resource.Loading<Product>())
+         try {
+            emit (Resource.Success<Product>(data = productsRepo.getSingleProduct(id)))
         } catch (e : Exception){
-            Resource.Error(message = e.message.toString())
+            emit(Resource.Error(message = e.message.toString()))
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }
 
 

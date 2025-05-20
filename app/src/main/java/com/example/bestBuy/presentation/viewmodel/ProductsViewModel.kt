@@ -22,8 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val getProducts: GetAllProductsUseCase,
-    private val getCategories:GetCategoriesUseCase, private val getHomePageProductsUseCase: GetHomePageProductsUseCase,
-    private val getSingleProductUseCase: GetSingleProductUseCase): ViewModel(){
+   private val getHomePageProductsUseCase: GetHomePageProductsUseCase ): ViewModel(){
     //Always holds a value – Unlike LiveData, MutableStateFlow requires an initial value.
     private val _uiProductsState = MutableStateFlow<ProductsUiState>(ProductsUiState())
     val uiProductsState : StateFlow<ProductsUiState> = _uiProductsState.asStateFlow()
@@ -32,26 +31,7 @@ class ProductsViewModel @Inject constructor(private val getProducts: GetAllProdu
     val uiCategoriesState : StateFlow<CategoryUiState> = _uiCategoriesState.asStateFlow()
 
 
-
-
-   /* init {//productListUseCase.invoke().onEach
-        getProducts().onEach{result->
-            when(result){
-                is Resource.Loading->{
-                    //Emit new values reactively – When you update .value, it notifies all collectors.
-                    _uiProductsState.value = ProductsUiState(isLoading = true)
-                }
-                is Resource.Success->{
-                    _uiProductsState.value = ProductsUiState(products = result.data ?: emptyList())
-                }
-                is Resource.Error->{
-                    _uiProductsState.value = ProductsUiState(error = result.message.toString())
-                }
-            }
-        }.launchIn(viewModelScope)
-    }*/
-
-    init {//productListUseCase.invoke().onEach
+    init {
         getHomePageProductsUseCase(8).onEach{result->
             when(result){
                 is Resource.Loading->{
@@ -68,15 +48,6 @@ class ProductsViewModel @Inject constructor(private val getProducts: GetAllProdu
         }.launchIn(viewModelScope)
     }
 
-    init {
-        getCategories().onEach { result->
-            when(result){
-                is Resource.Loading ->{_uiCategoriesState.value = CategoryUiState(isLoading = true)}
-                is Resource.Success ->{_uiCategoriesState.value = CategoryUiState(categories = result.data ?: emptyList())}
-                is Resource.Error ->{_uiCategoriesState.value = CategoryUiState(error = result.message.toString())
-                }
-            }
-        }.launchIn(viewModelScope)
-    }
+
     
 }

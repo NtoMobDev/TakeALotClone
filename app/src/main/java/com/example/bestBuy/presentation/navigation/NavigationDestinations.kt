@@ -14,7 +14,8 @@ sealed class Screen(val route:String,val title:String,val icon:ImageVector){
     object Cart : Screen("cart","Cart",Icons.Sharp.ShoppingCart)
     object Profile : Screen("profile","Profile",Icons.Sharp.Person)
     object Search: Screen("search","Search",Icons.Sharp.Search)
-    object ProductDetails : Screen("details/{itemId}","Details",Icons.Sharp.Info) {
-        fun createRoute(itemId: Int) = "details/$itemId"
+    object ProductDetails : Screen("products/{itemId}","Details",Icons.Sharp.Info) {
+        fun createRoute(itemId: Int) = "products/$itemId"
     }
 }
+

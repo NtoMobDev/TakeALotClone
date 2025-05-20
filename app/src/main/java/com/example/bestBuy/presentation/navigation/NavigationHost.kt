@@ -30,10 +30,12 @@ Scaffold(
         composable(Screen.Search.route){}
         composable(
             route = Screen.ProductDetails.route,
-            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+            arguments = listOf(navArgument("itemId") { type = NavType.IntType })
         ) {
             ProductDetailScreen()
         }
+
+
 
     }
 
