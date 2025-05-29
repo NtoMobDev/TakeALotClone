@@ -14,11 +14,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun BottomNav(navController: NavController){
+fun BottomNav(navController: NavController,currentRoute:String?){
     val screens = listOf(Screen.Home,Screen.Search,Screen.Cart,Screen.Profile)
 
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+   // val navBackStackEntry by navController.currentBackStackEntryAsState()
+    //val currentRoute = navBackStackEntry?.destination?.route
 
     NavigationBar(modifier = Modifier.fillMaxWidth(), containerColor = Color.White, tonalElevation = 20.dp) {
         screens.forEach { screen ->
