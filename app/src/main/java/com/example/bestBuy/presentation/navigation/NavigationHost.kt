@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.bestBuy.presentation.screens.DetailedScreenTopBar
 import com.example.bestBuy.presentation.screens.HomeScreen
+import com.example.bestBuy.presentation.screens.HomeTopBar
 import com.example.bestBuy.presentation.screens.ProductDetailScreen
 
 @Composable
@@ -25,7 +26,9 @@ fun AppNavHost(navController:NavHostController = rememberNavController()){
     val currentRoute = navBackStackEntry?.destination?.route
 Scaffold(
 
-        bottomBar = {if (currentRoute != Screen.ProductDetails.route) BottomNav(navController,currentRoute)}
+    topBar = {if (currentRoute != Screen.ProductDetails.route){ HomeTopBar()}},
+
+    bottomBar = {if (currentRoute != Screen.ProductDetails.route){BottomNav(navController,currentRoute)}}
 
 
     ) { padding ->
@@ -61,11 +64,4 @@ private fun shouldShowBottomBar(currentRoute: String?): Boolean {
     }
 }
 
-private fun showDetailedScreenTopBar(currentRoute: String?): Boolean {
-    return when (currentRoute) {
-        Screen.ProductDetails.route -> true // Hide on ProductDetails
-        // Add other routes where you want to hide the bottom bar
-        // "another_screen_route" -> false
-        else -> false // Show on all other screens
-    }
-}
+

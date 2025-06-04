@@ -4,7 +4,7 @@
             "outputFile": "com.example.takealotclone.app-mergeDebugResources-60:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/ntokozomachakanja/.gradle/caches/8.11.1/transforms/8bfab9c469a9521cd94c4aa13aa64661/transformed/core-splashscreen-1.0.1/res/values-night-v8/values-night-v8.xml",
+                    "source": "/Users/ntokozomachakanja/.gradle/caches/8.11.1/transforms/e73b6d7f3aeb9ea460240f239037daad/transformed/core-splashscreen-1.0.1/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

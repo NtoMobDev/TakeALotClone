@@ -4,7 +4,7 @@
             "outputFile": "com.example.takealotclone.app-mergeDebugResources-60:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "/Users/ntokozomachakanja/.gradle/caches/8.11.1/transforms/6ee35c4a71cfd455ab83e4afb90b2a58/transformed/core-1.13.1/res/values-v21/values-v21.xml",
+                    "source": "/Users/ntokozomachakanja/.gradle/caches/8.11.1/transforms/3911e6bb170d08f04a4f908e294a791a/transformed/core-1.13.1/res/values-v21/values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
