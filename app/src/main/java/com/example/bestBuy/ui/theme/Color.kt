@@ -25,10 +25,12 @@ val PrimaryBlue = Color(0xFF0076D6)
 val LightGray = Color(0xFFF2F2F7)
 val MediumGray = Color(0xFFE3E3E8)
 val DarkGray = Color(0xFFA1A1A5)
+val PrimaryDarkBlue = Color(0xFF07213A)
 
 val PrimaryGreen = Color(0xFF28A745)
 val PrimaryRed = Color(0xFFDC3545)
 val PrimaryOrange = Color(0xFFFF6600)
+val MediumOrange = Color(0xFFFA595E)
 
 
 

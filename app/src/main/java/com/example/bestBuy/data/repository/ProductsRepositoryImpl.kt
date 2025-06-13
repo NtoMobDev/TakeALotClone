@@ -26,4 +26,8 @@ class ProductsRepositoryImpl @Inject constructor(private val productsApi:ApiServ
         return productsApi.getSingleProduct(id).product.toProductDomainModel()
     }
 
+    override suspend fun getProductsByCategory(category: String): List<Product> {
+        return productsApi.getProductsByCategory(category).products.map { it.toProductDomainModel() }
+    }
+
 }

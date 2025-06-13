@@ -31,19 +31,22 @@ fun HomeScreen (navController: NavController,productsViewModel:ProductsViewModel
             .padding(8.dp)) {
 
 
-        val uiProductsState by productsViewModel.uiProductsState.collectAsStateWithLifecycle()
+        val uiHomePageState by productsViewModel.uiHomeState.collectAsStateWithLifecycle()
         when {
-            uiProductsState.isLoading -> {
+            uiHomePageState.isLoading -> {
                 LoadingScreen()
             }
 
-            uiProductsState.error != null -> {
-                ErrorScreen(message = uiProductsState.error ?: "Unknown error")
+            uiHomePageState.error != null -> {
+                ErrorScreen(message = uiHomePageState.error ?: "Unknown error")
             }
 
-            uiProductsState.products.isNotEmpty() -> {
-                ProductList(products = uiProductsState.products, navController)
+            uiHomePageState.products.isNotEmpty() and uiHomePageState.categories.isNotEmpty() -> {
+                FeaturedCategories(categories = uiHomePageState.categories,navController)
+                ProductList(products = uiHomePageState.products, navController)
+
             }
+
             //else -> { Text("No products available") }
         }
     }

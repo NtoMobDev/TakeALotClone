@@ -22,4 +22,9 @@ interface ApiService {
     @GET("products/{id}")
     suspend fun getSingleProduct(@Path("id") id:Int):SingleProductDto
 
+
+    @GET("products/category")
+    suspend fun getProductsByCategory(@Query("type") type: String): ResponseDto
+
+
 }

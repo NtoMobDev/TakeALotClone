@@ -1,6 +1,6 @@
 package com.example.bestBuy.presentation.viewmodel;
 
-import com.example.bestBuy.domain.usecases.GetAllProductsUseCase;
+import com.example.bestBuy.domain.usecases.GetCategoriesUseCase;
 import com.example.bestBuy.domain.usecases.GetHomePageProductsUseCase;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -23,29 +23,29 @@ import javax.inject.Provider;
     "KotlinInternalInJava"
 })
 public final class ProductsViewModel_Factory implements Factory<ProductsViewModel> {
-  private final Provider<GetAllProductsUseCase> getProductsProvider;
+  private final Provider<GetCategoriesUseCase> getCategoriesUseCaseProvider;
 
   private final Provider<GetHomePageProductsUseCase> getHomePageProductsUseCaseProvider;
 
-  public ProductsViewModel_Factory(Provider<GetAllProductsUseCase> getProductsProvider,
+  public ProductsViewModel_Factory(Provider<GetCategoriesUseCase> getCategoriesUseCaseProvider,
       Provider<GetHomePageProductsUseCase> getHomePageProductsUseCaseProvider) {
-    this.getProductsProvider = getProductsProvider;
+    this.getCategoriesUseCaseProvider = getCategoriesUseCaseProvider;
     this.getHomePageProductsUseCaseProvider = getHomePageProductsUseCaseProvider;
   }
 
   @Override
   public ProductsViewModel get() {
-    return newInstance(getProductsProvider.get(), getHomePageProductsUseCaseProvider.get());
+    return newInstance(getCategoriesUseCaseProvider.get(), getHomePageProductsUseCaseProvider.get());
   }
 
   public static ProductsViewModel_Factory create(
-      Provider<GetAllProductsUseCase> getProductsProvider,
+      Provider<GetCategoriesUseCase> getCategoriesUseCaseProvider,
       Provider<GetHomePageProductsUseCase> getHomePageProductsUseCaseProvider) {
-    return new ProductsViewModel_Factory(getProductsProvider, getHomePageProductsUseCaseProvider);
+    return new ProductsViewModel_Factory(getCategoriesUseCaseProvider, getHomePageProductsUseCaseProvider);
   }
 
-  public static ProductsViewModel newInstance(GetAllProductsUseCase getProducts,
+  public static ProductsViewModel newInstance(GetCategoriesUseCase getCategoriesUseCase,
       GetHomePageProductsUseCase getHomePageProductsUseCase) {
-    return new ProductsViewModel(getProducts, getHomePageProductsUseCase);
+    return new ProductsViewModel(getCategoriesUseCase, getHomePageProductsUseCase);
   }
 }

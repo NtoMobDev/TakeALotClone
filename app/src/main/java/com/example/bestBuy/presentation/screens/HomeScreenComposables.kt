@@ -8,16 +8,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -27,7 +30,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -47,6 +49,8 @@ import com.example.bestBuy.ui.theme.Grey40
 import com.example.takealotclone.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.Dp
 import com.example.bestBuy.ui.theme.DarkGray
 import com.example.bestBuy.ui.theme.LightGray
 import com.example.bestBuy.ui.theme.MediumGray
@@ -58,31 +62,33 @@ fun HomeTopBar(){
         .fillMaxWidth()
         .background(color = LightGray),
         horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp, top= 24.dp,end = 16.dp, bottom = 8.dp) // Padding for the Box
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.takealot_logo),
-                contentDescription = "Logo",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .align(Alignment.Center) // Align to the center of the Box
-            )
-
-            Icon(
-                imageVector = Icons.Default.ShoppingCart,
-                contentDescription = "Cart",
-                tint = Color.DarkGray,
-                modifier = Modifier
-                    .align(Alignment.CenterEnd) // Align to the center-end of the Box
-            )
-        }
-
-
-
+        AppLogo()
         SearchTextField()
+    }
+}
+
+@Composable
+fun AppLogo(){
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, top= 24.dp,end = 16.dp, bottom = 8.dp) // Padding for the Box
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.takealot_logo),
+            contentDescription = "Logo",
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .align(Alignment.Center) // Align to the center of the Box
+        )
+
+        Icon(
+            imageVector = Icons.Default.ShoppingCart,
+            contentDescription = "Cart",
+            tint = Color.DarkGray,
+            modifier = Modifier
+                .align(Alignment.CenterEnd) // Align to the center-end of the Box
+        )
     }
 }
 
@@ -97,7 +103,7 @@ fun SearchTextField() {
         placeholder = { Text("Search for products,brands...", color = DarkGray) },
         singleLine = true,
         modifier = Modifier
-            .defaultMinSize(minHeight = 44.dp)
+            .defaultMinSize(minHeight = 36.dp)
             .fillMaxWidth()
             .padding(start = 8.dp, end = 8.dp, bottom = 16.dp),
         colors = TextFieldDefaults.colors(focusedContainerColor = MediumGray, unfocusedContainerColor = MediumGray,
@@ -113,7 +119,59 @@ fun PromoBar(){}
 fun ThanksALotPicks(){}
 
 @Composable
-fun FeaturedCategories(){}
+fun CircleBox(color: Color,content: String,size: Dp = 60.dp) {
+    Box(modifier = Modifier
+            .size(size)
+            .clip(CircleShape)
+            .background(color)){
+       Text(text = content, modifier = Modifier.align(Alignment.Center))
+
+    }
+}
+
+
+@Composable
+fun FeaturedCategories(categories:List<String>,navController: NavController){
+    val predefinedBackgroundColors = listOf(
+        Color(0xFFFA595E),
+        Color(0xFF07213A),
+        Color(0xFF0076D6),
+        Color(0xFF28A745)
+    )
+   /* val takeALotCategories = listOf(
+        "MORE Deals",
+        "Takealot MORE",
+        "Takealot NOW")
+
+  val allCategories = takeALotCategories + categories*/
+    Column (modifier = Modifier.fillMaxWidth().background(Color.White)){
+        Text(
+            text = "Featured Categories",
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
+        )
+        LazyRow(modifier = Modifier.background(Color.White)) {
+
+            itemsIndexed(categories) { index, category ->
+                CategorySection(category,
+                    predefinedBackgroundColors[index % predefinedBackgroundColors.size]){
+                    navController.navigate(Screen.CategoryDetails.createRoute(category))}
+            }
+            /*items(categories){ category ->
+            CategorySection(category)*/
+        }
+    }
+    }
+
+
+@Composable
+fun CategorySection(category:String,color:Color,onClick: () -> Unit){
+    Column (modifier = Modifier.padding(16.dp).clickable { onClick() },
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally){
+        CircleBox(color,category)
+        Text(text = category)}
+
+}
 
 @Composable
 fun DealsOfTheDay(){}

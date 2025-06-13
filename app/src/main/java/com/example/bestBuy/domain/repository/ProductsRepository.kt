@@ -13,5 +13,7 @@ interface ProductsRepository {
 
     suspend fun getSingleProduct(id:Int):Product
 
+    suspend fun getProductsByCategory(category:String):List<Product>
+
 
 }

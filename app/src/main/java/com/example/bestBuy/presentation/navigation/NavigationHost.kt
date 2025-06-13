@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.bestBuy.presentation.screens.CategoryDetailScreen
 import com.example.bestBuy.presentation.screens.DetailedScreenTopBar
 import com.example.bestBuy.presentation.screens.HomeScreen
 import com.example.bestBuy.presentation.screens.HomeTopBar
@@ -45,6 +46,12 @@ Scaffold(
             arguments = listOf(navArgument("itemId") { type = NavType.IntType })
         ) {
             ProductDetailScreen(navController)
+        }
+        composable(
+            route = Screen.CategoryDetails.route,
+            arguments = listOf(navArgument("categoryName") { type = NavType.StringType })
+        ){
+            CategoryDetailScreen(navController)
         }
 
 

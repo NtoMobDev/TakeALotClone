@@ -11,9 +11,12 @@ import com.example.bestBuy.di.NetworkModule_ProvideApiServiceFactory;
 import com.example.bestBuy.di.NetworkModule_ProvideProductsRepositoryFactory;
 import com.example.bestBuy.di.NetworkModule_ProvideRetrofitFactory;
 import com.example.bestBuy.domain.repository.ProductsRepository;
-import com.example.bestBuy.domain.usecases.GetAllProductsUseCase;
+import com.example.bestBuy.domain.usecases.GetCategoriesUseCase;
 import com.example.bestBuy.domain.usecases.GetHomePageProductsUseCase;
+import com.example.bestBuy.domain.usecases.GetProductsByCategoryUseCase;
 import com.example.bestBuy.domain.usecases.GetSingleProductUseCase;
+import com.example.bestBuy.presentation.viewmodel.CategoryDetailsViewModel;
+import com.example.bestBuy.presentation.viewmodel.CategoryDetailsViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.example.bestBuy.presentation.viewmodel.ProductsViewModel;
 import com.example.bestBuy.presentation.viewmodel.ProductsViewModel_HiltModules_KeyModule_ProvideFactory;
 import com.example.bestBuy.presentation.viewmodel.SingleProductViewModel;
@@ -380,7 +383,7 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
 
     @Override
     public Set<String> getViewModelKeys() {
-      return SetBuilder.<String>newSetBuilder(2).add(ProductsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SingleProductViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
+      return SetBuilder.<String>newSetBuilder(3).add(CategoryDetailsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(ProductsViewModel_HiltModules_KeyModule_ProvideFactory.provide()).add(SingleProductViewModel_HiltModules_KeyModule_ProvideFactory.provide()).build();
     }
 
     @Override
@@ -408,6 +411,8 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
 
     private final ViewModelCImpl viewModelCImpl = this;
 
+    private Provider<CategoryDetailsViewModel> categoryDetailsViewModelProvider;
+
     private Provider<ProductsViewModel> productsViewModelProvider;
 
     private Provider<SingleProductViewModel> singleProductViewModelProvider;
@@ -422,8 +427,12 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
 
     }
 
-    private GetAllProductsUseCase getAllProductsUseCase() {
-      return new GetAllProductsUseCase(singletonCImpl.provideProductsRepositoryProvider.get());
+    private GetProductsByCategoryUseCase getProductsByCategoryUseCase() {
+      return new GetProductsByCategoryUseCase(singletonCImpl.provideProductsRepositoryProvider.get());
+    }
+
+    private GetCategoriesUseCase getCategoriesUseCase() {
+      return new GetCategoriesUseCase(singletonCImpl.provideProductsRepositoryProvider.get());
     }
 
     private GetHomePageProductsUseCase getHomePageProductsUseCase() {
@@ -437,13 +446,14 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
-      this.productsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
-      this.singleProductViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.categoryDetailsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
+      this.productsViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.singleProductViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
     }
 
     @Override
     public Map<String, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(2).put("com.example.bestBuy.presentation.viewmodel.ProductsViewModel", ((Provider) productsViewModelProvider)).put("com.example.bestBuy.presentation.viewmodel.SingleProductViewModel", ((Provider) singleProductViewModelProvider)).build();
+      return MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(3).put("com.example.bestBuy.presentation.viewmodel.CategoryDetailsViewModel", ((Provider) categoryDetailsViewModelProvider)).put("com.example.bestBuy.presentation.viewmodel.ProductsViewModel", ((Provider) productsViewModelProvider)).put("com.example.bestBuy.presentation.viewmodel.SingleProductViewModel", ((Provider) singleProductViewModelProvider)).build();
     }
 
     @Override
@@ -472,10 +482,13 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
       @Override
       public T get() {
         switch (id) {
-          case 0: // com.example.bestBuy.presentation.viewmodel.ProductsViewModel 
-          return (T) new ProductsViewModel(viewModelCImpl.getAllProductsUseCase(), viewModelCImpl.getHomePageProductsUseCase());
+          case 0: // com.example.bestBuy.presentation.viewmodel.CategoryDetailsViewModel 
+          return (T) new CategoryDetailsViewModel(viewModelCImpl.getProductsByCategoryUseCase(), viewModelCImpl.savedStateHandle);
 
-          case 1: // com.example.bestBuy.presentation.viewmodel.SingleProductViewModel 
+          case 1: // com.example.bestBuy.presentation.viewmodel.ProductsViewModel 
+          return (T) new ProductsViewModel(viewModelCImpl.getCategoriesUseCase(), viewModelCImpl.getHomePageProductsUseCase());
+
+          case 2: // com.example.bestBuy.presentation.viewmodel.SingleProductViewModel 
           return (T) new SingleProductViewModel(viewModelCImpl.getSingleProductUseCase(), viewModelCImpl.savedStateHandle);
 
           default: throw new AssertionError(id);
@@ -576,7 +589,7 @@ public final class DaggerMyApplication_HiltComponents_SingletonC {
     }
 
     @Override
-    public void injectMyApplication(MyApplication arg0) {
+    public void injectMyApplication(MyApplication myApplication) {
     }
 
     @Override
