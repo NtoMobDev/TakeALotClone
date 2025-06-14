@@ -1,6 +1,7 @@
 package com.example.bestBuy;
 
 import com.example.bestBuy.di.NetworkModule;
+import com.example.bestBuy.presentation.viewmodel.CategoryDetailsViewModel_HiltModules;
 import com.example.bestBuy.presentation.viewmodel.ProductsViewModel_HiltModules;
 import com.example.bestBuy.presentation.viewmodel.SingleProductViewModel_HiltModules;
 import dagger.Binds;
@@ -154,6 +155,7 @@ public final class MyApplication_HiltComponents {
 
   @Subcomponent(
       modules = {
+          CategoryDetailsViewModel_HiltModules.KeyModule.class,
           HiltWrapper_ActivityRetainedComponentManager_LifecycleModule.class,
           HiltWrapper_SavedStateHandleModule.class,
           ActivityCBuilderModule.class,
@@ -195,6 +197,7 @@ public final class MyApplication_HiltComponents {
 
   @Subcomponent(
       modules = {
+          CategoryDetailsViewModel_HiltModules.BindsModule.class,
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
           ProductsViewModel_HiltModules.BindsModule.class,
           SingleProductViewModel_HiltModules.BindsModule.class
