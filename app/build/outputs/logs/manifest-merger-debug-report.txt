@@ -135,8 +135,8 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ntokozomachakanja/.g
 	android:dataExtractionRules
 		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:10:9-65
 	android:name
-		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:8:9-57
-activity#com.example.bestBuy.MainActivity
+		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:8:9-58
+activity#com.example.takeALot.MainActivity
 ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:18:9-28:20
 	android:label
 		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:21:13-45
@@ -145,7 +145,7 @@ ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/An
 	android:theme
 		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:22:13-59
 	android:name
-		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:19:13-60
+		ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:19:13-61
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from /Users/ntokozomachakanja/StudioProjects/TakeALotClone/app/src/main/AndroidManifest.xml:23:13-27:29
 action#android.intent.action.MAIN

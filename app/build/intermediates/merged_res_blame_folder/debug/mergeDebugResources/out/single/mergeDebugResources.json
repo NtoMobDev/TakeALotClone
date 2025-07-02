@@ -1,19 +1,11 @@
 [
     {
-        "merged": "com.example.takealotclone.app-debug-62:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.takealotclone.app-main-64:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
         "merged": "com.example.takealotclone.app-debug-62:/mipmap-hdpi_ic_launcher.webp.flat",
         "source": "com.example.takealotclone.app-main-64:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.takealotclone.app-debug-62:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.takealotclone.app-main-64:/mipmap-xhdpi/ic_launcher.webp"
-    },
-    {
-        "merged": "com.example.takealotclone.app-debug-62:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.takealotclone.app-main-64:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_moredeals_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/moredeals_category.jpeg"
     },
     {
         "merged": "com.example.takealotclone.app-debug-62:/xml_data_extraction_rules.xml.flat",
@@ -28,6 +20,62 @@
         "source": "com.example.takealotclone.app-main-64:/xml/backup_rules.xml"
     },
     {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_watch_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/watch_category.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_laptop_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/laptop_category.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_banner3.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/banner3.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.takealotclone.app-main-64:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-anydpi_takealot_logo1.png.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-anydpi/takealot_logo1.png"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable_takealot_logo.xml.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable/takealot_logo.xml"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_audio_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/audio_category.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.takealotclone.app-main-64:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_banner2.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/banner2.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.takealotclone.app-main-64:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_phone_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/phone_category.jpeg"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.takealotclone.app-main-64:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.takealotclone.app-main-64:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_appliance_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/appliance_category.jpeg"
+    },
+    {
         "merged": "com.example.takealotclone.app-debug-62:/drawable-ldpi_takealot_logo1.png.flat",
         "source": "com.example.takealotclone.app-main-64:/drawable-ldpi/takealot_logo1.png"
     },
@@ -36,32 +84,20 @@
         "source": "com.example.takealotclone.app-main-64:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.takealotclone.app-debug-62:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.takealotclone.app-main-64:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_banner4.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/banner4.jpeg"
     },
     {
         "merged": "com.example.takealotclone.app-debug-62:/mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.takealotclone.app-main-64:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.takealotclone.app-debug-62:/drawable-anydpi_takealot_logo1.png.flat",
-        "source": "com.example.takealotclone.app-main-64:/drawable-anydpi/takealot_logo1.png"
-    },
-    {
         "merged": "com.example.takealotclone.app-debug-62:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "com.example.takealotclone.app-main-64:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.takealotclone.app-debug-62:/drawable_takealot_logo.xml.flat",
-        "source": "com.example.takealotclone.app-main-64:/drawable/takealot_logo.xml"
-    },
-    {
         "merged": "com.example.takealotclone.app-debug-62:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "com.example.takealotclone.app-main-64:/mipmap-xxxhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.takealotclone.app-debug-62:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.takealotclone.app-main-64:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
         "merged": "com.example.takealotclone.app-debug-62:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
@@ -78,5 +114,13 @@
     {
         "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_takealot_logo1.png.flat",
         "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/takealot_logo1.png"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_banner1.webp.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/banner1.webp"
+    },
+    {
+        "merged": "com.example.takealotclone.app-debug-62:/drawable-mdpi_tv_category.jpeg.flat",
+        "source": "com.example.takealotclone.app-main-64:/drawable-mdpi/tv_category.jpeg"
     }
 ]

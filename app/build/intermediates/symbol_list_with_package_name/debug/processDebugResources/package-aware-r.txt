@@ -96,6 +96,12 @@ dimen splashscreen_icon_size
 dimen splashscreen_icon_size_no_background
 dimen splashscreen_icon_size_with_background
 drawable abc_vector_test
+drawable appliance_category
+drawable audio_category
+drawable banner1
+drawable banner2
+drawable banner3
+drawable banner4
 drawable compat_splash_screen
 drawable compat_splash_screen_no_icon_background
 drawable ic_100tb
@@ -108,6 +114,8 @@ drawable ic_call_decline_low
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable icon_background
+drawable laptop_category
+drawable moredeals_category
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -121,8 +129,11 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable phone_category
 drawable takealot_logo
 drawable takealot_logo1
+drawable tv_category
+drawable watch_category
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
